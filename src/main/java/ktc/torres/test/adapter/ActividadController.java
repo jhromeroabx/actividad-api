@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
+/**
+ * Propósito: Contiene los adaptadores de entrada, como los controladores REST.
+ * Esta clase es responsable de recibir las solicitudes HTTP desde el cliente como un "puerte"
+ * y delegar la lógica de negocio a los servicios correspondientes.
+ */
 @RestController
 @RequestMapping("/api/actividades")
 @RequiredArgsConstructor
@@ -20,8 +24,8 @@ public class ActividadController {
         return Flux.from(service.listar().subscribeOn(Schedulers.io()));
     }
 
-    @GetMapping("/{id}")
-    public Mono<Actividad> obtener(@PathVariable String id) {
+    @GetMapping("/{id}/encontrar")
+    public Mono<Actividad> obtener(@PathVariable("id") String id) {
         return Mono.from(service.obtenerPorId(id).toFlowable().subscribeOn(Schedulers.io()));
     }
 
@@ -30,8 +34,8 @@ public class ActividadController {
         return Mono.from(service.guardar(actividad).toFlowable().subscribeOn(Schedulers.io()));
     }
 
-    @DeleteMapping("/{id}")
-    public Mono<Void> eliminar(@PathVariable String id) {
+    @DeleteMapping("/{id}/borrar")
+    public Mono<Void> eliminar(@PathVariable("id") String id) {
         return Mono.from(service.eliminar(id).toFlowable().subscribeOn(Schedulers.io())).then();
     }
 }

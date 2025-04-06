@@ -1,8 +1,8 @@
 spring:
   r2dbc:
-    url: r2dbc:mariadb://mysql-loasi123-jhosepromero14-dc28.e.aivencloud.com:16012/actividad_db?sslMode=REQUIRED
-    username: avnadmin
-    password: AVNS_hL7HyCq6zSCzOg0PM08
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   main:
     web-application-type: reactive

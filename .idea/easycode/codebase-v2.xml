@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/ktc/torres/test/adapter/ActividadController.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/application/ActividadService.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/config/SwaggerConfig.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/domain/model/Actividad.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/infrastructure/persistence/entity/ActividadEntity.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/infrastructure/persistence/repository/ActividadRepository.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/java/ktc/torres/test/ActividadApiApplication.java;C:/Users/jhose/OneDrive/Documentos/PROYECTOS/WEBAPI/JAVA/actividad-api/src/main/resources/schema.sql" />
+  </component>
+</project>

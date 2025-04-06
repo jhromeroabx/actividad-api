@@ -6,9 +6,13 @@ import ktc.torres.test.infrastructure.persistence.repository.ActividadRepository
 import io.reactivex.rxjava3.core.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
+/**
+ * Propósito: Contiene la lógica de negocio o servicios de aplicación.
+ * Esta clase es responsable de coordinar las operaciones entre los adaptadores de entrada y salida.
+ * Osea transforma entidades a modelos si es necesario
+ */
 @Service
 @RequiredArgsConstructor
 public class ActividadService {
@@ -30,10 +34,6 @@ public class ActividadService {
     }
 
     public Single<Actividad> guardar(Actividad actividad) {
-        if (actividad.getId() == null) {
-            actividad.setId(UUID.randomUUID().toString());
-        }
-
         ActividadEntity entity = toEntity(actividad);
 
         return Single.fromPublisher(
@@ -45,17 +45,26 @@ public class ActividadService {
     public Completable eliminar(String id) {
         return Completable.fromPublisher(
                 repository.deleteById(id)
+                        .doOnSuccess(aVoid -> Mono.just("Exito en borrar la actividad: " + id))
+                        .onErrorResume(throwable -> {
+                            return Mono.error(new RuntimeException("Error al eliminar la actividad", throwable));
+                        })
         );
     }
 
     private ActividadEntity toEntity(Actividad a) {
-        return ActividadEntity.builder()
-                .id(a.getId())
+        ActividadEntity.ActividadEntityBuilder builder = ActividadEntity.builder()
                 .nombre(a.getNombre())
                 .estado(a.getEstado())
-                .fechaHora(a.getFechaHora())
-                .build();
+                .fechaHora(a.getFechaHora());
+
+        if (a.getId() != null) {
+            builder.id(a.getId());
+        }
+
+        return builder.build();
     }
+
 
     private Actividad toModel(ActividadEntity e) {
         return Actividad.builder()

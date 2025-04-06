@@ -2,6 +2,7 @@ package ktc.torres.test.infrastructure.persistence.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -13,8 +14,9 @@ import java.time.LocalDateTime;
 @Table("actividades")
 public class ActividadEntity {
     @Id
-    private String id;
+    private Long id;
     private String nombre;
     private String estado;
+    @Column("fecha_hora")
     private LocalDateTime fechaHora;
 }
